@@ -27,8 +27,10 @@ module Scribd_fu
 
   module InstanceMethods
     @@content_types = ['application/pdf', 'application/msword', 'application/mspowerpoint', 'application/vnd.ms-powerpoint',
-                        'application/excel', 'application/vnd.ms-excel', 'application/postscript', 'text/plain', 'application/rtf', 'application/vnd.oasis.opendocument.text', 'vnd.oasis.opendocument.presentation',
-                        'application/vnd.sun.xml.writer', 'application/vnd.sun.xml.impress', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.sun.xml.calc']
+                        'application/excel', 'application/vnd.ms-excel', 'application/postscript', 'text/plain', 'application/rtf',
+												'application/vnd.oasis.opendocument.text', 'vnd.oasis.opendocument.presentation',
+                        'application/vnd.sun.xml.writer', 'application/vnd.sun.xml.impress', 
+												'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.sun.xml.calc']
 
     mattr_reader :content_types
 
@@ -54,8 +56,7 @@ module Scribd_fu
           @@scribd_login = Scribd::User.login @@scribd_config[:scribd]['user'].to_s.strip, @@scribd_config[:scribd]['password'].to_s.strip
         end
       rescue
-        puts "Config file not found, or your credentials are b0rked!"
-        exit
+        raise "config/scribd.yml file not found, or your credentials are incorrect..."
       end
     end
 
